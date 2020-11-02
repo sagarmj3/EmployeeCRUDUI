@@ -4,20 +4,17 @@ import GetEmployee from './GetEmployee';
 import UpdateEmployee from './UpdateEmployee';
 import DeleteEmployee from './DeleteEmployee';
 
-class ViewComponent extends React.Component{
+const ViewComponent = (props) => {
+    
+        const {propAddEmployee, propGetEmployee, propUpdateEmployee, propDeleteEmployee,
+                showPage, showEmployees} = props;
 
-    constructor(props){
-        super(props);
-        
-    }
-    render() {
-        
-        const {propAddEmployee, propGetEmployee, showPage, showEmployees} = this.props;
-        this.showComponent = (showPage) => {
+        const handleShowComponent = (showPage) => {
             switch(showPage){
                 case 'add' :
                     return  <AddEmpolyee 
                                 propAddEmployee={(fields) => {propAddEmployee(fields)}}
+                                showPage={showPage}
                             />
                 case 'get' :
                     return  <GetEmployee
@@ -26,9 +23,12 @@ class ViewComponent extends React.Component{
                             />
                 case 'update' :
                     return  <UpdateEmployee
+                                propUpdateEmployee={(fields) => {propUpdateEmployee(fields)}}
+                                showPage={showPage}
                             />
                 case 'delete' :
                     return  <DeleteEmployee
+                                propDeleteEmployee={(id) => {propDeleteEmployee(id)}}
                             />
                 default :
                     return  <AddEmpolyee 
@@ -36,12 +36,12 @@ class ViewComponent extends React.Component{
                             />
             }
         }
+
         return (
             <div>
-                {this.showComponent(showPage)}      
+                {handleShowComponent(showPage)}      
             </div>
         );
-    }
 }
 
 export default ViewComponent;

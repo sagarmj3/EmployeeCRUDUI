@@ -1,16 +1,6 @@
 import React from 'react';
 
-class ShowEmployee extends React.Component {
-
-    constructor(props){
-        super(props);
-        
-        
-    }
-    
-    render() {
-
-        const {showEmployees} = this.props;
+const ShowEmployee = (props) => {
 
         return (
             <div>
@@ -25,7 +15,7 @@ class ShowEmployee extends React.Component {
                     </thead>
                     <tbody>
                         { 
-                            (showEmployees.map(emp => {
+                            (props.showEmployees.map(emp => {
                                 return (
                                     <tr key={emp.id}>
                                         <td>{ emp.id }</td>
@@ -40,7 +30,6 @@ class ShowEmployee extends React.Component {
                 </table>
             </div>
         );
-    }
 }
 
 export default ShowEmployee;

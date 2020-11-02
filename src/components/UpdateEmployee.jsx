@@ -1,13 +1,15 @@
 import React from 'react';
+import AddEmpolyee from './AddEmployee';
 
-class UpdateEmployee extends React.Component {
-
-    render() {
+const UpdateEmployee = (props) => {
 
         return (
-            <div>UpdateEmployee</div>
+            <div>
+                <AddEmpolyee propUpdateEmployee={(fields) => {props.propUpdateEmployee(fields)}}/>
+                
+            </div>
         );
-    }
+    
 }
 
 export default UpdateEmployee;
